@@ -47,8 +47,14 @@ import os
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(
+        os.environ.get(
+            "DATABASE_URL", 
+            "mysql://root:mysql@123@localhost:3306/grocery"
+        )
+    )
 }
+
 
 # Application definition
 
