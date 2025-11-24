@@ -1,1 +1,1 @@
-web: sh ./start.sh
+web: sh grocery/start.sh

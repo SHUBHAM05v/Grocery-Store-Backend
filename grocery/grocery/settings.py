@@ -43,16 +43,11 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
-import os
 import dj_database_url
+import os
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get(
-            "DATABASE_URL", 
-            "mysql://root:mysql@123@localhost:3306/grocery"
-        )
-    )
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
