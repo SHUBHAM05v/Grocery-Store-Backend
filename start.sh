@@ -4,4 +4,4 @@
 python manage.py migrate
 
 # Start Gunicorn server
-gunicorn grocery.wsgi --bind 0.0.0.0:$PORT
+gunicorn grocery.grocery.wsgi --bind 0.0.0.0:$PORT
