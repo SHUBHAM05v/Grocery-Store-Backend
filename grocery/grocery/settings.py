@@ -134,15 +134,19 @@ WSGI_APPLICATION = 'grocery.wsgi.application'
 import os
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('grocery'),
-        'USER': os.environ.get('root'),
-        'PASSWORD': os.environ.get('mysql@123'),
-        'HOST': os.environ.get('localhost'),
-        'PORT': os.environ.get('3306'),
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.environ.get("DB_NAME"),
+        "USER": os.environ.get("DB_USER"),
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
+        "PORT": os.environ.get("DB_PORT"),
+        "OPTIONS": {
+            "charset": "utf8mb4",
+        },
     }
 }
+
 
 
 
