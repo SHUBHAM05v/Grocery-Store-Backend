@@ -141,8 +141,12 @@ DATABASES = {
         "PASSWORD": os.getenv("MYSQLPASSWORD"),
         "HOST": os.getenv("MYSQLHOST"),
         "PORT": os.getenv("MYSQLPORT", "3306"),
+        "OPTIONS": {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
+
 
 
 
