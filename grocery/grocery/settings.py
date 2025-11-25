@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i68g=$-ljkuj0m0dy-wdzlux%lza$w7c3c9484)_m-g-350qyj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", ".railway.app"]
+
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -102,33 +103,47 @@ WSGI_APPLICATION = 'grocery.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-import dj_database_url
+# import dj_database_url
+# import os
+
+# DATABASE_URL = os.environ.get("DATABASE_URL")
+
+# if DATABASE_URL:
+#     DATABASES = {
+#         "default": dj_database_url.parse(
+#             DATABASE_URL,
+#             conn_max_age=600,
+#             ssl_require=False
+#         )
+#     }
+# else:
+#     # local dev
+#     DATABASES = {
+#         {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'grocery',
+#             'USER': 'root',
+#             'PASSWORD': 'mysql@123',
+#             'HOST': 'localhost',
+#             'PORT': '3306',
+#             'OPTIONS': {
+#                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#             }
+#     }}
+
 import os
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
-if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=False
-        )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('grocery'),
+        'USER': os.environ.get('root'),
+        'PASSWORD': os.environ.get('mysql@123'),
+        'HOST': os.environ.get('localhost'),
+        'PORT': os.environ.get('3306'),
     }
-else:
-    # local dev
-    DATABASES = {
-        {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'grocery',
-            'USER': 'root',
-            'PASSWORD': 'mysql@123',
-            'HOST': 'localhost',
-            'PORT': '3306',
-            'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-            }
-    }}
+}
+
 
 
 # Password validation
@@ -165,7 +180,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
